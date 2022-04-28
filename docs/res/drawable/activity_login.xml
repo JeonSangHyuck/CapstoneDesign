@@ -42,6 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="로그인"
+        app:backgroundTint="#7F7F7F"
         app:layout_constraintEnd_toEndOf="@+id/et_pass"
         app:layout_constraintStart_toStartOf="@+id/et_pass"
         app:layout_constraintTop_toBottomOf="@+id/et_pass" />
@@ -52,6 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
         android:text="회원가입"
+        app:backgroundTint="#7F7F7F"
         app:layout_constraintEnd_toEndOf="@+id/btn_login"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/btn_login"
