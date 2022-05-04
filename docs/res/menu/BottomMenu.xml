@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/tab_m"
+        android:enabled="true"
+        app:showAsAction="always"
+        android:title="월간"/>
+    <item
+        android:id="@+id/tab_w"
+        android:enabled="true"
+        app:showAsAction="always"
+        android:title="주간"/>
+    <item
+        android:id="@+id/tab_d"
+        android:enabled="true"
+        app:showAsAction="always"
+        android:title="일간"/>
+    <item
+        android:id="@+id/tab_s"
+        android:enabled="true"
+        android:icon="@drawable/settings"
+        android:title="설정"
+        android:visible="true"
+        app:showAsAction="always" />
+
+
+</menu>
