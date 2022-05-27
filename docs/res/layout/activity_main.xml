@@ -3,52 +3,53 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:id="@+id/main">
 
-
-    <CalendarView
-        android:id="@+id/calendarView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:showWeekNumber="false"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <TextView
-        android:id="@+id/tv_income"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="수입"
-        android:text="TextView"
-        android:textColor="#2196F3" />
-
-    <TextView
-        android:id="@+id/tv_spend"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="지출"
-        android:text="TextView"
-        android:textColor="#F44336" />
-
-    <TextView
-        android:id="@+id/tv_sum"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="총합"
-        android:inputType="textMultiLine"
-        android:textColor="#000000"
-        android:textSize="18sp" />
-    
     <LinearLayout
-        android:id="@+id/month_ly"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_weight="1"/>
+        android:orientation="vertical">
+        <CalendarView
+            android:id="@+id/calendarView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:showWeekNumber="false"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_income"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="수입"
+            android:inputType="textMultiLine"
+            android:textColor="#2196F3"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_spend"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="지출"
+            android:inputType="textMultiLine"
+            android:textColor="#F44336"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_sum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="총합"
+            android:inputType="textMultiLine"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+
+    </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/Bmenu"
@@ -61,6 +62,9 @@
         app:menu="@menu/bmenu">
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+
+</LinearLayout>
 
 
 </LinearLayout>
