@@ -5,18 +5,23 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Environment;
+import android.text.style.ForegroundColorSpan;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -47,14 +52,16 @@ public class MainActivity extends AppCompatActivity {
     //하단 바 생성
     final String Tag = this.getClass().getSimpleName();
 
-    LinearLayout month_ly;
+    LinearLayout main;
     BottomNavigationView bottomNavigationView;
 
-    //로그인 성공 시 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
         Intent intent = getIntent();
         String name = intent.getStringExtra("name");
@@ -79,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int datOfMonth) {
                 selectYear = year;
-                selectMonth = month + 1;    
+                selectMonth = month + 1;    //시스템 상에서는 month가 1 작게 나오기 때문
                 selectDay = datOfMonth;
 
 
@@ -118,18 +125,23 @@ public class MainActivity extends AppCompatActivity {
                             try {
                                 FileOutputStream fout = new FileOutputStream(path);
                                 int etIncome = Integer.parseInt(editText.getText().toString());
-                                int etExpense = Integer.parseInt(editText2.getText().toString());
+                                int etExpense = Integer.parseInt(editText2.getText().toString()); //logCat
                                 income = income + etIncome;
                                 expense = expense + etExpense;
                                 balance = income - expense;
 
-                                String str = "수입  " + income + "지출  " + expense + "\n"
-                                        + "합계  " + balance;
+                                String str = "합계  "  + balance;
+                                String str1 = "수입  " + income;
+                                String str2 = "지출  " + expense;
+
 
                                 String writeStr = "수입 : " + etIncome + "\n" + "지출 : " + etExpense;
                                 fout.write(writeStr.getBytes());
                                 fout.close();
+
                                 tv.setText(str);
+                                tv2.setText(str1);
+                                tv3.setText(str2);
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -141,50 +153,25 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        //액션바 설정하기//
-        //액션바 타이틀 변경하기
+        
         getSupportActionBar().setTitle("Saver");
-        //액션바 배경색 변경
-        //홈버튼 표시
+        
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        //액션바 숨기기
-        //hideActionBar();
-
+        
         //하단바 설정하기//
         init(); //객체 정의
         SettingListener(); //리스너 등록
 
         //맨 처음 시작하는 탭 설정
-        bottomNavigationView.setSelectedItemId(R.id.month_ly);
+        bottomNavigationView.setSelectedItemId(R.id.main);
 
 
     }
 
-    //액션버튼 메뉴 액션바에 집어 넣기
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
-    }
+    
 
-    //액션버튼을 클릭했을때의 동작
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-        int id = item.getItemId();
-        
-        if (id == android.R.id.home) {
-            Toast.makeText(this, "홈아이콘 클릭", Toast.LENGTH_SHORT).show();
-            return true;
-        }
-        if (id == R.id.action_search) {
-            Toast.makeText(this, "검색 클릭", Toast.LENGTH_SHORT).show();
-            return true;
-        }
+      
 
-
-        return super.onOptionsItemSelected(item);
-    }
 
     //액션바 숨기기
     private void hideActionBar() {
@@ -194,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void init(){
-        month_ly = findViewById(R.id.month_ly);
+        main = findViewById(R.id.main);
         bottomNavigationView = findViewById(R.id.Bmenu);
     }
     private void SettingListener(){
@@ -208,26 +195,26 @@ public class MainActivity extends AppCompatActivity {
             switch(menuItem.getItemId()){
                 case R.id.tab_m:{
                     getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.month_ly, new Fragment_month())
+                            .replace(R.id.main, new Fragment_month())
                             .commit();
 
                     return true;
                 }
                 case R.id.tab_w:{
                     getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.month_ly, new Fragment_week())
+                            .replace(R.id.main, new Fragment_week())
                             .commit();
                     return true;
                 }
                 case R.id.tab_d:{
                     getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.month_ly, new Fragment_day())
+                            .replace(R.id.main, new Fragment_day())
                             .commit();
                     return true;
                 }
                 case R.id.tab_s:{
                     getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.month_ly, new Fragment_settings())
+                            .replace(R.id.main, new Fragment_settings())
                             .commit();
                     return true;
                 }
